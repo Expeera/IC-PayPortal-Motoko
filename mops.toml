@@ -1,0 +1,11 @@
+[package]
+name = "IC-PayPortal"
+version = "1.0.0"
+description = "Module for Motoko is a library that provides developers with a set of functions for managing fiat payments (Stripe, PayPal) on the Internet Computer Protocol (ICP)."
+repository = "https://github.com/Expeera/IC-PayPortal-Motoko"
+keywords = [ "PayPortal", "Fiat"  ]
+license = "MIT"
+
+[dependencies]
+base = "0.8.3"
+serde = "0.2.0"
