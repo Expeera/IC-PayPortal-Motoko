@@ -1,0 +1,157 @@
+[[module.service]]
+= service
+
+[[type.Message]]
+== Message
+
+[source.no-repl,motoko,subs=+macros]
+----
+type Message = Text
+----
+
+
+
+[[type.Stripe]]
+== Stripe
+
+[source.no-repl,motoko,subs=+macros]
+----
+Stripe
+----
+
+
+
+
+
+[[Stripe.type.CreateSessionApi]]
+=== CreateSessionApi
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CreateSessionApi = { status : Bool; message : xref:#type.Message[Message]; data : ?CreateSession }
+----
+
+
+
+[[Stripe.type.CreateSession]]
+=== CreateSession
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CreateSession = { id : Text; url : Text }
+----
+
+
+
+[[Stripe.type.RetrieveSessionApi]]
+=== RetrieveSessionApi
+
+[source.no-repl,motoko,subs=+macros]
+----
+type RetrieveSessionApi = { status : Bool; message : xref:#type.Message[Message]; data : ?RetrieveSession }
+----
+
+
+
+[[Stripe.type.RetrieveSession]]
+=== RetrieveSession
+
+[source.no-repl,motoko,subs=+macros]
+----
+type RetrieveSession = { payment_status : Text }
+----
+
+
+
+[[Stripe.create_session]]
+=== create_session
+
+[source.no-repl,motoko,subs=+macros]
+----
+func create_session<$>(invoiceNo : Nat, invoice : xref:types.adoc#Request.type.CreateInvoiceBody[Types.Request.CreateInvoiceBody], transform_context : xref:http.adoc#IcHttp.type.TransformContext[Http.IcHttp.TransformContext]) : async Result.Result<?CreateSession, ?xref:#type.Message[Message]>
+----
+
+
+
+[[Stripe.retrieve_session]]
+=== retrieve_session
+
+[source.no-repl,motoko,subs=+macros]
+----
+func retrieve_session<$>(session_id : Text, transform_context : xref:http.adoc#IcHttp.type.TransformContext[Http.IcHttp.TransformContext]) : async Result.Result<?RetrieveSession, ?xref:#type.Message[Message]>
+----
+
+
+
+[[type.Paypal]]
+== Paypal
+
+[source.no-repl,motoko,subs=+macros]
+----
+Paypal
+----
+
+
+
+
+
+[[Paypal.type.CreateOrderApi]]
+=== CreateOrderApi
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CreateOrderApi = { status : Bool; message : xref:#type.Message[Message]; data : ?CreateOrder }
+----
+
+
+
+[[Paypal.type.CreateOrder]]
+=== CreateOrder
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CreateOrder = { id : Text; url : Text }
+----
+
+
+
+[[Paypal.type.RetrieveOrderApi]]
+=== RetrieveOrderApi
+
+[source.no-repl,motoko,subs=+macros]
+----
+type RetrieveOrderApi = { status : Bool; message : xref:#type.Message[Message]; data : ?RetrieveOrder }
+----
+
+
+
+[[Paypal.type.RetrieveOrder]]
+=== RetrieveOrder
+
+[source.no-repl,motoko,subs=+macros]
+----
+type RetrieveOrder = { status : Text }
+----
+
+
+
+[[Paypal.create_order]]
+=== create_order
+
+[source.no-repl,motoko,subs=+macros]
+----
+func create_order<$>(invoiceNo : Nat, invoice : xref:types.adoc#Request.type.CreateInvoiceBody[Types.Request.CreateInvoiceBody], transform_context : xref:http.adoc#IcHttp.type.TransformContext[Http.IcHttp.TransformContext]) : async Result.Result<?CreateOrder, ?xref:#type.Message[Message]>
+----
+
+
+
+[[Paypal.retrieve_order]]
+=== retrieve_order
+
+[source.no-repl,motoko,subs=+macros]
+----
+func retrieve_order<$>(order_id : Text, transform_context : xref:http.adoc#IcHttp.type.TransformContext[Http.IcHttp.TransformContext]) : async Result.Result<?RetrieveOrder, ?xref:#type.Message[Message]>
+----
+
+
+

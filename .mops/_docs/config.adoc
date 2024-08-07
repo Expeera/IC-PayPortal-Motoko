@@ -1,0 +1,43 @@
+[[module.config]]
+= config
+
+[[get_stripe_success_url]]
+== get_stripe_success_url
+
+[source.no-repl,motoko,subs=+macros]
+----
+func get_stripe_success_url(invoiceNo : Nat) : Text
+----
+
+
+
+[[get_stripe_cancel_url]]
+== get_stripe_cancel_url
+
+[source.no-repl,motoko,subs=+macros]
+----
+func get_stripe_cancel_url(invoiceNo : Nat) : Text
+----
+
+
+
+[[get_paypal_success_url]]
+== get_paypal_success_url
+
+[source.no-repl,motoko,subs=+macros]
+----
+func get_paypal_success_url(invoiceNo : Nat) : Text
+----
+
+
+
+[[get_paypal_cancel_url]]
+== get_paypal_cancel_url
+
+[source.no-repl,motoko,subs=+macros]
+----
+func get_paypal_cancel_url(invoiceNo : Nat) : Text
+----
+
+
+

@@ -1,0 +1,35 @@
+[[module.lib/Base64]]
+= lib/Base64
+
+[[type.StdEncoding]]
+== StdEncoding
+
+[source.no-repl,motoko,subs=+macros]
+----
+StdEncoding
+----
+
+
+
+
+
+[[StdEncoding.encode]]
+=== encode
+
+[source.no-repl,motoko,subs=+macros]
+----
+func encode(data : pass:[[]Nat8pass:[]]) : Text
+----
+
+
+
+[[encode]]
+== encode
+
+[source.no-repl,motoko,subs=+macros]
+----
+func encode(data : pass:[[]Nat8pass:[]], encodeMap : pass:[[]Nat8pass:[]]) : Text
+----
+
+
+

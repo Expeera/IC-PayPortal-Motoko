@@ -1,0 +1,63 @@
+[[module.utils]]
+= utils
+
+[[keyNat]]
+== keyNat
+
+[source.no-repl,motoko,subs=+macros]
+----
+func keyNat(x : Nat) : Trie.Key<Nat>
+----
+
+
+
+[[keyPrincipal]]
+== keyPrincipal
+
+[source.no-repl,motoko,subs=+macros]
+----
+func keyPrincipal(x : Principal) : Trie.Key<Principal>
+----
+
+
+
+[[generalResponse]]
+== generalResponse
+
+[source.no-repl,motoko,subs=+macros]
+----
+func generalResponse<T, W>(status : Bool, message : Text, data : xref:http.adoc#type.ResponseStatus[Http.ResponseStatus]<T, W>, status_code : Nat) : xref:http.adoc#type.Response[Http.Response]<xref:http.adoc#type.ResponseStatus[Http.ResponseStatus]<T, W>>
+----
+
+
+
+[[text2Nat8Array]]
+== text2Nat8Array
+
+[source.no-repl,motoko,subs=+macros]
+----
+func text2Nat8Array(txt : Text) : pass:[[]Nat8pass:[]]
+----
+
+
+
+[[nat8Arr2Text]]
+== nat8Arr2Text
+
+[source.no-repl,motoko,subs=+macros]
+----
+func nat8Arr2Text(arr : pass:[[]Nat8pass:[]]) : Text
+----
+
+
+
+[[convertNumber]]
+== convertNumber
+
+[source.no-repl,motoko,subs=+macros]
+----
+func convertNumber(originalNumber : Float) : Text
+----
+
+
+

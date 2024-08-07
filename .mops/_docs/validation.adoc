@@ -1,0 +1,73 @@
+[[module.validation]]
+= validation
+
+[[isAnonymous]]
+== isAnonymous
+
+[source.no-repl,motoko,subs=+macros]
+----
+func isAnonymous(caller : Principal) : Bool
+----
+
+
+
+[[isAnonymousCallerText]]
+== isAnonymousCallerText
+
+[source.no-repl,motoko,subs=+macros]
+----
+func isAnonymousCallerText(caller : Text) : Bool
+----
+
+
+
+[[isEmpty]]
+== isEmpty
+
+[source.no-repl,motoko,subs=+macros]
+----
+func isEmpty(text : Text) : Bool
+----
+
+
+
+[[isEqual]]
+== isEqual
+
+[source.no-repl,motoko,subs=+macros]
+----
+func isEqual(text1 : Text, text2 : Text) : Bool
+----
+
+
+
+[[isGreaterThanZero]]
+== isGreaterThanZero
+
+[source.no-repl,motoko,subs=+macros]
+----
+func isGreaterThanZero(number : Float) : Bool
+----
+
+
+
+[[checkIfTheCurrencyIsFound]]
+== checkIfTheCurrencyIsFound
+
+[source.no-repl,motoko,subs=+macros]
+----
+func checkIfTheCurrencyIsFound(currency : Text) : Bool
+----
+
+
+
+[[checkIfThePaymentMethodIsFound]]
+== checkIfThePaymentMethodIsFound
+
+[source.no-repl,motoko,subs=+macros]
+----
+func checkIfThePaymentMethodIsFound(paymentMethod : Text) : Bool
+----
+
+
+

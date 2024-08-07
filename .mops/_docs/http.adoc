@@ -1,0 +1,909 @@
+[[module.http]]
+= http
+
+[[type.IcHttp]]
+== IcHttp
+
+[source.no-repl,motoko,subs=+macros]
+----
+IcHttp
+----
+
+
+
+
+
+[[IcHttp.type.HttpHeader]]
+=== HttpHeader
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HttpHeader = { name : Text; value : Text }
+----
+
+
+
+[[IcHttp.type.HttpRequest]]
+=== HttpRequest
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HttpRequest = { method : HttpMethod; url : Text; headers : pass:[[]HttpHeaderpass:[]]; body : ?Blob; max_response_bytes : ?Nat64; transform : ?TransformRawResponseFunction }
+----
+
+
+
+[[IcHttp.type.TransformRawResponseFunction]]
+=== TransformRawResponseFunction
+
+[source.no-repl,motoko,subs=+macros]
+----
+type TransformRawResponseFunction = { function : shared query TransformArgs -> async HttpResponsePayload; context : Blob }
+----
+
+
+
+[[IcHttp.type.TransformArgs]]
+=== TransformArgs
+
+[source.no-repl,motoko,subs=+macros]
+----
+type TransformArgs = { response : HttpResponsePayload; context : Blob }
+----
+
+
+
+[[IcHttp.type.TransformContext]]
+=== TransformContext
+
+[source.no-repl,motoko,subs=+macros]
+----
+type TransformContext = { function : shared query TransformArgs -> async HttpResponsePayload; context : Blob }
+----
+
+
+
+[[IcHttp.type.HttpResponsePayload]]
+=== HttpResponsePayload
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HttpResponsePayload = { status : Nat; headers : pass:[[]HttpHeaderpass:[]]; body : pass:[[]Nat8pass:[]] }
+----
+
+
+
+[[IcHttp.type.CanisterHttpResponsePayload]]
+=== CanisterHttpResponsePayload
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CanisterHttpResponsePayload = { status : Nat; headers : pass:[[]HttpHeaderpass:[]]; body : pass:[[]Nat8pass:[]] }
+----
+
+
+
+[[IcHttp.type.HttpMethod]]
+=== HttpMethod
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HttpMethod = {#get; #post; #head}
+----
+
+
+
+[[IcHttp.type.HttpResponse]]
+=== HttpResponse
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HttpResponse = { status : xref:#type.StatusCode[StatusCode]; headers : pass:[[]?HttpHeaderpass:[]]; body : Blob }
+----
+
+
+
+[[type.HeaderField]]
+== HeaderField
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HeaderField = (Text, Text)
+----
+
+
+
+[[type.HttpRequest]]
+== HttpRequest
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HttpRequest = { method : Text; url : Text; headers : pass:[[]xref:#type.HeaderField[HeaderField]pass:[]]; body : Blob }
+----
+
+
+
+[[type.HttpResponse]]
+== HttpResponse
+
+[source.no-repl,motoko,subs=+macros]
+----
+type HttpResponse = { status_code : Nat16; headers : pass:[[]xref:#type.HeaderField[HeaderField]pass:[]]; body : Blob; upgrade : Bool }
+----
+
+
+
+[[type.ResponseStatus]]
+== ResponseStatus
+
+[source.no-repl,motoko,subs=+macros]
+----
+type ResponseStatus<success, err> = {#success : success; #err : err}
+----
+
+
+
+[[type.Response]]
+== Response
+
+[source.no-repl,motoko,subs=+macros]
+----
+type Response<ResponseStatus> = { status : Bool; message : Text; body : xref:#type.ResponseStatus[ResponseStatus]; status_code : xref:#type.StatusCode[StatusCode] }
+----
+
+
+
+[[type.Method]]
+== Method
+
+[source.no-repl,motoko,subs=+macros]
+----
+type Method = Text
+----
+
+
+
+[[type.Method]]
+== Method
+
+[source.no-repl,motoko,subs=+macros]
+----
+Method
+----
+
+
+
+
+
+[[Method.Get]]
+=== Get
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Get : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Head]]
+=== Head
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Head : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Post]]
+=== Post
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Post : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Put]]
+=== Put
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Put : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Patch]]
+=== Patch
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Patch : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Delete]]
+=== Delete
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Delete : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Connect]]
+=== Connect
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Connect : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Options]]
+=== Options
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Options : xref:#type.Method[Method]
+----
+
+
+
+[[Method.Trace]]
+=== Trace
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Trace : xref:#type.Method[Method]
+----
+
+
+
+[[type.StatusCode]]
+== StatusCode
+
+[source.no-repl,motoko,subs=+macros]
+----
+type StatusCode = Nat
+----
+
+
+
+[[type.Status]]
+== Status
+
+[source.no-repl,motoko,subs=+macros]
+----
+Status
+----
+
+
+
+
+
+[[Status.Continue]]
+=== Continue
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Continue : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.SwitchingProtocols]]
+=== SwitchingProtocols
+
+[source.no-repl,motoko,subs=+macros]
+----
+let SwitchingProtocols : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Processing]]
+=== Processing
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Processing : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.EarlyHints]]
+=== EarlyHints
+
+[source.no-repl,motoko,subs=+macros]
+----
+let EarlyHints : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.OK]]
+=== OK
+
+[source.no-repl,motoko,subs=+macros]
+----
+let OK : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Created]]
+=== Created
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Created : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Accepted]]
+=== Accepted
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Accepted : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NonAuthoritativeInfo]]
+=== NonAuthoritativeInfo
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NonAuthoritativeInfo : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NoContent]]
+=== NoContent
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NoContent : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.ResetContent]]
+=== ResetContent
+
+[source.no-repl,motoko,subs=+macros]
+----
+let ResetContent : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.PartialContent]]
+=== PartialContent
+
+[source.no-repl,motoko,subs=+macros]
+----
+let PartialContent : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.MultiStatus]]
+=== MultiStatus
+
+[source.no-repl,motoko,subs=+macros]
+----
+let MultiStatus : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.AlreadyReported]]
+=== AlreadyReported
+
+[source.no-repl,motoko,subs=+macros]
+----
+let AlreadyReported : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.IMUsed]]
+=== IMUsed
+
+[source.no-repl,motoko,subs=+macros]
+----
+let IMUsed : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.MultipleChoices]]
+=== MultipleChoices
+
+[source.no-repl,motoko,subs=+macros]
+----
+let MultipleChoices : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.MovedPermanently]]
+=== MovedPermanently
+
+[source.no-repl,motoko,subs=+macros]
+----
+let MovedPermanently : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Found]]
+=== Found
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Found : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.SeeOther]]
+=== SeeOther
+
+[source.no-repl,motoko,subs=+macros]
+----
+let SeeOther : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NotModified]]
+=== NotModified
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NotModified : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.UseProxy]]
+=== UseProxy
+
+[source.no-repl,motoko,subs=+macros]
+----
+let UseProxy : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.TemporaryRedirect]]
+=== TemporaryRedirect
+
+[source.no-repl,motoko,subs=+macros]
+----
+let TemporaryRedirect : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.PermanentRedirect]]
+=== PermanentRedirect
+
+[source.no-repl,motoko,subs=+macros]
+----
+let PermanentRedirect : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.BadRequest]]
+=== BadRequest
+
+[source.no-repl,motoko,subs=+macros]
+----
+let BadRequest : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Unauthorized]]
+=== Unauthorized
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Unauthorized : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.PaymentRequired]]
+=== PaymentRequired
+
+[source.no-repl,motoko,subs=+macros]
+----
+let PaymentRequired : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Forbidden]]
+=== Forbidden
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Forbidden : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NotFound]]
+=== NotFound
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NotFound : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.MethodNotAllowed]]
+=== MethodNotAllowed
+
+[source.no-repl,motoko,subs=+macros]
+----
+let MethodNotAllowed : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NotAcceptable]]
+=== NotAcceptable
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NotAcceptable : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.ProxyAuthRequired]]
+=== ProxyAuthRequired
+
+[source.no-repl,motoko,subs=+macros]
+----
+let ProxyAuthRequired : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.RequestTimeout]]
+=== RequestTimeout
+
+[source.no-repl,motoko,subs=+macros]
+----
+let RequestTimeout : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Conflict]]
+=== Conflict
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Conflict : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Gone]]
+=== Gone
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Gone : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.LengthRequired]]
+=== LengthRequired
+
+[source.no-repl,motoko,subs=+macros]
+----
+let LengthRequired : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.PreconditionFailed]]
+=== PreconditionFailed
+
+[source.no-repl,motoko,subs=+macros]
+----
+let PreconditionFailed : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.RequestEntityTooLarge]]
+=== RequestEntityTooLarge
+
+[source.no-repl,motoko,subs=+macros]
+----
+let RequestEntityTooLarge : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.RequestURITooLong]]
+=== RequestURITooLong
+
+[source.no-repl,motoko,subs=+macros]
+----
+let RequestURITooLong : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.UnsupportedMediaType]]
+=== UnsupportedMediaType
+
+[source.no-repl,motoko,subs=+macros]
+----
+let UnsupportedMediaType : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.RequestedRangeNotSatisfiable]]
+=== RequestedRangeNotSatisfiable
+
+[source.no-repl,motoko,subs=+macros]
+----
+let RequestedRangeNotSatisfiable : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.ExpectationFailed]]
+=== ExpectationFailed
+
+[source.no-repl,motoko,subs=+macros]
+----
+let ExpectationFailed : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Teapot]]
+=== Teapot
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Teapot : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.MisdirectedRequest]]
+=== MisdirectedRequest
+
+[source.no-repl,motoko,subs=+macros]
+----
+let MisdirectedRequest : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.UnprocessableEntity]]
+=== UnprocessableEntity
+
+[source.no-repl,motoko,subs=+macros]
+----
+let UnprocessableEntity : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.Locked]]
+=== Locked
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Locked : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.FailedDependency]]
+=== FailedDependency
+
+[source.no-repl,motoko,subs=+macros]
+----
+let FailedDependency : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.TooEarly]]
+=== TooEarly
+
+[source.no-repl,motoko,subs=+macros]
+----
+let TooEarly : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.UpgradeRequired]]
+=== UpgradeRequired
+
+[source.no-repl,motoko,subs=+macros]
+----
+let UpgradeRequired : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.PreconditionRequired]]
+=== PreconditionRequired
+
+[source.no-repl,motoko,subs=+macros]
+----
+let PreconditionRequired : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.TooManyRequests]]
+=== TooManyRequests
+
+[source.no-repl,motoko,subs=+macros]
+----
+let TooManyRequests : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.RequestHeaderFieldsTooLarge]]
+=== RequestHeaderFieldsTooLarge
+
+[source.no-repl,motoko,subs=+macros]
+----
+let RequestHeaderFieldsTooLarge : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.UnavailableForLegalReasons]]
+=== UnavailableForLegalReasons
+
+[source.no-repl,motoko,subs=+macros]
+----
+let UnavailableForLegalReasons : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.InternalServerError]]
+=== InternalServerError
+
+[source.no-repl,motoko,subs=+macros]
+----
+let InternalServerError : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NotImplemented]]
+=== NotImplemented
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NotImplemented : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.BadGateway]]
+=== BadGateway
+
+[source.no-repl,motoko,subs=+macros]
+----
+let BadGateway : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.ServiceUnavailable]]
+=== ServiceUnavailable
+
+[source.no-repl,motoko,subs=+macros]
+----
+let ServiceUnavailable : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.HTTPVersionNotSupported]]
+=== HTTPVersionNotSupported
+
+[source.no-repl,motoko,subs=+macros]
+----
+let HTTPVersionNotSupported : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.GatewayTimeout]]
+=== GatewayTimeout
+
+[source.no-repl,motoko,subs=+macros]
+----
+let GatewayTimeout : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.VariantAlsoNegotiates]]
+=== VariantAlsoNegotiates
+
+[source.no-repl,motoko,subs=+macros]
+----
+let VariantAlsoNegotiates : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.InsufficientStorage]]
+=== InsufficientStorage
+
+[source.no-repl,motoko,subs=+macros]
+----
+let InsufficientStorage : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.LoopDetected]]
+=== LoopDetected
+
+[source.no-repl,motoko,subs=+macros]
+----
+let LoopDetected : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NotExtended]]
+=== NotExtended
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NotExtended : xref:#type.StatusCode[StatusCode]
+----
+
+
+
+[[Status.NetworkAuthenticationRequired]]
+=== NetworkAuthenticationRequired
+
+[source.no-repl,motoko,subs=+macros]
+----
+let NetworkAuthenticationRequired : xref:#type.StatusCode[StatusCode]
+----
+
+
+

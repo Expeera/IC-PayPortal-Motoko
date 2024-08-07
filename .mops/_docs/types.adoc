@@ -1,0 +1,179 @@
+[[module.types]]
+= types
+
+[[type.Invoice]]
+== Invoice
+
+[source.no-repl,motoko,subs=+macros]
+----
+type Invoice = { id : Nat; owner : Principal; amount : Float; status : Text; items : pass:[[]xref:#type.Item[Item]pass:[]]; transactionId : Text; paymentLink : Text; paymentMethod : Text; currency : Text; createdAt : Int }
+----
+
+
+
+[[type.Item]]
+== Item
+
+[source.no-repl,motoko,subs=+macros]
+----
+type Item = { id : Nat; name : Text; quantity : Int; price : Float }
+----
+
+
+
+[[type.InvoiceStatus]]
+== InvoiceStatus
+
+[source.no-repl,motoko,subs=+macros]
+----
+InvoiceStatus
+----
+
+
+
+
+
+[[InvoiceStatus.Pending]]
+=== Pending
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Pending : Text
+----
+
+
+
+[[InvoiceStatus.Completed]]
+=== Completed
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Completed : Text
+----
+
+
+
+[[InvoiceStatus.Cancelled]]
+=== Cancelled
+
+[source.no-repl,motoko,subs=+macros]
+----
+let Cancelled : Text
+----
+
+
+
+[[InvoiceStatus.CancelledByAdmin]]
+=== CancelledByAdmin
+
+[source.no-repl,motoko,subs=+macros]
+----
+let CancelledByAdmin : Text
+----
+
+
+
+[[InvoiceStatus.CancelledBySystem]]
+=== CancelledBySystem
+
+[source.no-repl,motoko,subs=+macros]
+----
+let CancelledBySystem : Text
+----
+
+
+
+[[type.CreateSession]]
+== CreateSession
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CreateSession = { id : Text; url : Text }
+----
+
+
+
+[[type.Request]]
+== Request
+
+[source.no-repl,motoko,subs=+macros]
+----
+Request
+----
+
+
+
+
+
+[[Request.type.CreateInvoiceBody]]
+=== CreateInvoiceBody
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CreateInvoiceBody = { amount : Float; paymentMethod : Text; currency : Text; items : pass:[[]xref:#type.Item[Item]pass:[]] }
+----
+
+
+
+[[Request.type.ConfirmInvoiceBody]]
+=== ConfirmInvoiceBody
+
+[source.no-repl,motoko,subs=+macros]
+----
+type ConfirmInvoiceBody = { invoiceNo : Nat; paymentMethod : Text; isSuccess : Bool }
+----
+
+
+
+[[Request.type.ConfirmInvoiceAdminBody]]
+=== ConfirmInvoiceAdminBody
+
+[source.no-repl,motoko,subs=+macros]
+----
+type ConfirmInvoiceAdminBody = { invoiceNo : Nat; paymentMethod : Text; isCompleted : Bool }
+----
+
+
+
+[[type.Response]]
+== Response
+
+[source.no-repl,motoko,subs=+macros]
+----
+Response
+----
+
+
+
+
+
+[[Response.type.CreateInvoiceBody]]
+=== CreateInvoiceBody
+
+[source.no-repl,motoko,subs=+macros]
+----
+type CreateInvoiceBody = { id : Nat; payment : { transactionId : Text; redirectUrl : Text } }
+----
+
+
+
+[[Response.type.ConfirmInvoiceBody]]
+=== ConfirmInvoiceBody
+
+[source.no-repl,motoko,subs=+macros]
+----
+type ConfirmInvoiceBody = { invoiceNo : Nat; transactionId : Text; paymentMethod : Text; status : Text }
+----
+
+
+
+[[type.IC]]
+== IC
+
+[source.no-repl,motoko,subs=+macros]
+----
+type IC = actor { http_request : shared xref:http.adoc#IcHttp.type.HttpRequest[Http.IcHttp.HttpRequest] -> async xref:http.adoc#IcHttp.type.HttpResponse[Http.IcHttp.HttpResponse] }
+----
+
+
+

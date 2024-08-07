@@ -1,0 +1,243 @@
+[[module.messages]]
+= messages
+
+[[not_authorized]]
+== not_authorized
+
+[source.no-repl,motoko,subs=+macros]
+----
+let not_authorized : Text
+----
+
+
+
+[[not_owner]]
+== not_owner
+
+[source.no-repl,motoko,subs=+macros]
+----
+let not_owner : Text
+----
+
+
+
+[[invalid_principal]]
+== invalid_principal
+
+[source.no-repl,motoko,subs=+macros]
+----
+let invalid_principal : Text
+----
+
+
+
+[[success_operation]]
+== success_operation
+
+[source.no-repl,motoko,subs=+macros]
+----
+let success_operation : Text
+----
+
+
+
+[[owner_is_required]]
+== owner_is_required
+
+[source.no-repl,motoko,subs=+macros]
+----
+let owner_is_required : Text
+----
+
+
+
+[[payment_method_is_required]]
+== payment_method_is_required
+
+[source.no-repl,motoko,subs=+macros]
+----
+let payment_method_is_required : Text
+----
+
+
+
+[[payment_method_invalid_value]]
+== payment_method_invalid_value
+
+[source.no-repl,motoko,subs=+macros]
+----
+let payment_method_invalid_value : Text
+----
+
+
+
+[[currency_is_required]]
+== currency_is_required
+
+[source.no-repl,motoko,subs=+macros]
+----
+let currency_is_required : Text
+----
+
+
+
+[[currency_invalid_value]]
+== currency_invalid_value
+
+[source.no-repl,motoko,subs=+macros]
+----
+let currency_invalid_value : Text
+----
+
+
+
+[[invoice_amount_must_be_greater_than_zero]]
+== invoice_amount_must_be_greater_than_zero
+
+[source.no-repl,motoko,subs=+macros]
+----
+let invoice_amount_must_be_greater_than_zero : Text
+----
+
+
+
+[[sum_invoice_items_is_incorrect]]
+== sum_invoice_items_is_incorrect
+
+[source.no-repl,motoko,subs=+macros]
+----
+let sum_invoice_items_is_incorrect : Text
+----
+
+
+
+[[transaction_id_is_required]]
+== transaction_id_is_required
+
+[source.no-repl,motoko,subs=+macros]
+----
+let transaction_id_is_required : Text
+----
+
+
+
+[[invoice_number_is_required]]
+== invoice_number_is_required
+
+[source.no-repl,motoko,subs=+macros]
+----
+let invoice_number_is_required : Text
+----
+
+
+
+[[invoice_not_found]]
+== invoice_not_found
+
+[source.no-repl,motoko,subs=+macros]
+----
+let invoice_not_found : Text
+----
+
+
+
+[[invoice_not_pending]]
+== invoice_not_pending
+
+[source.no-repl,motoko,subs=+macros]
+----
+let invoice_not_pending : Text
+----
+
+
+
+[[invoice_not_paid]]
+== invoice_not_paid
+
+[source.no-repl,motoko,subs=+macros]
+----
+let invoice_not_paid : Text
+----
+
+
+
+[[unpaid_error_message]]
+== unpaid_error_message
+
+[source.no-repl,motoko,subs=+macros]
+----
+let unpaid_error_message
+----
+
+
+
+[[already_paid_error_message]]
+== already_paid_error_message
+
+[source.no-repl,motoko,subs=+macros]
+----
+let already_paid_error_message
+----
+
+
+
+[[payment_failed_error_message]]
+== payment_failed_error_message
+
+[source.no-repl,motoko,subs=+macros]
+----
+let payment_failed_error_message
+----
+
+
+
+[[created_invoice_successfully]]
+== created_invoice_successfully
+
+[source.no-repl,motoko,subs=+macros]
+----
+let created_invoice_successfully : Text
+----
+
+
+
+[[created_invoice_failed]]
+== created_invoice_failed
+
+[source.no-repl,motoko,subs=+macros]
+----
+let created_invoice_failed : Text
+----
+
+
+
+[[confirmed_invoice_successfully]]
+== confirmed_invoice_successfully
+
+[source.no-repl,motoko,subs=+macros]
+----
+let confirmed_invoice_successfully : Text
+----
+
+
+
+[[cancelled_invoice_successfully]]
+== cancelled_invoice_successfully
+
+[source.no-repl,motoko,subs=+macros]
+----
+let cancelled_invoice_successfully : Text
+----
+
+
+
+[[confirmed_invoice_failed]]
+== confirmed_invoice_failed
+
+[source.no-repl,motoko,subs=+macros]
+----
+let confirmed_invoice_failed : Text
+----
+
+
+
